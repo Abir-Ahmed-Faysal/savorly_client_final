@@ -5,13 +5,17 @@ import {
   createUserWithEmailAndPassword,
   onAuthStateChanged,
   signInWithEmailAndPassword,
+  signInWithPopup,
   signOut,
+  updateProfile,
 } from "firebase/auth";
-import { auth } from "../Firebase_Config";
+import { auth, provider } from "../Firebase_Config";
 
 const ContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [photoURL, setPhotoURL] = useState(null);
+  const [displayName, setDisplayName] = useState(null);
   const signUpByEmail = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
   };
@@ -20,16 +24,29 @@ const ContextProvider = ({ children }) => {
   };
   const logOut = () => {
     return signOut(auth)
-      .then((result) => console.log(result))
-      .catch((error) => console.log(error));
+      
+  };
+  const signInByGoogle = () => {
+    return signInWithPopup(auth, provider);
+  };
+
+  const updateUser = (displayName, photoURL) => {
+    return updateProfile(auth.currentUser, {
+      displayName,
+      photoURL,
+    });
   };
 
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
         setUser(user);
+        setPhotoURL(user.photoURL);
+        setDisplayName(user.displayName);
       } else {
         setUser(null);
+        setPhotoURL(null);
+        setDisplayName(null);
       }
       setLoading(false);
     });
@@ -39,14 +56,20 @@ const ContextProvider = ({ children }) => {
   const authContextValue = {
     signUpByEmail,
     signInUser,
+    signInByGoogle,
+    updateUser,
     logOut,
+    setDisplayName,
+    setPhotoURL,
+    displayName,
+    photoURL,
     loading,
     user,
   };
 
   return (
     <>
-      <AuthContext value={authContextValue}>{children}</AuthContext>
+      <AuthContext.Provider value={authContextValue}>{children}</AuthContext.Provider>
     </>
   );
 };

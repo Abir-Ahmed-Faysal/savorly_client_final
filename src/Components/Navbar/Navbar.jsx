@@ -1,13 +1,17 @@
-import React, { useContext } from "react";
+import React from "react";
 import { Link, NavLink } from "react-router";
 import { AuthContext } from "../../Context/AuthContext";
-import { FaSignInAlt } from 'react-icons/fa';
-
+import { FaSignInAlt } from "react-icons/fa";
+import useAuth from "../../Hooks/useAuth";
+import { FiLogOut } from "react-icons/fi";
 
 const Navbar = () => {
-  const { user, loading } = useContext(AuthContext);
-
-
+  const { user, logOut, loading } = useAuth();
+  const handleLogOut = () => {
+    logOut()
+      .then(() => alert("log out success"))
+      .catch((error) => console.log(error));
+  };
 
   const link = (
     <>
@@ -95,18 +99,26 @@ const Navbar = () => {
                       <li>
                         <NavLink>My orders</NavLink>
                       </li>
+                      <li>
+                        <button
+                          onClick={handleLogOut}
+                          className="text-red-500 hover:text-white hover:bg-red-500"
+                        >
+                          Log out <FiLogOut />
+                        </button>
+                      </li>
                     </ul>
                   </div>
                 </div>
               ) : (
                 <div>
-                  <Link to={'/log-in'} className="btn btn-primary">
-                   <FaSignInAlt className="text-white" size={16} /> Log in
+                  <Link to={"/log-in"} className="btn btn-primary">
+                    <FaSignInAlt className="text-white" size={16} /> Log in
                   </Link>
                 </div>
               )}
             </>
-          ) : null}
+          ) : <div>Loading...</div>}
 
           <div></div>
         </div>
