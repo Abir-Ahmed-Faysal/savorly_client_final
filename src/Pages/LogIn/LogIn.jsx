@@ -1,9 +1,13 @@
 import React from "react";
+import Lottie from "lottie-react";
+import LoginAnimation from '../../assets/LogIn.json'
 
 const LogIn = () => {
   return (
     <div className="w-full my-8 max-w-md p-8 space-y-3 rounded-xl bg-gray-50 mx-auto  text-gray-800">
-      <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
+      <h1 className="text-2xl font-bold text-center">
+      Welcome Back</h1>
+      <h1 className="flex justify-center">  <Lottie animationData={LoginAnimation}  style={{ width: 100, height: 100 }} loop={true} /></h1>
       <form noValidate="" action="" className="space-y-6">
         <div className="space-y-1 text-sm">
           <label htmlFor="username" className="block text-gray-600">
