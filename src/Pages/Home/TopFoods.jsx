@@ -35,7 +35,7 @@ const TopFoods = ({ food }) => {
           <p className="text-gray-600 mb-1">Price: ৳{price}</p>
           <p className="text-gray-600 mb-3">Purchased: {purchaseCount} times</p>
           <button
-            onClick={() => navigate(`/foods/${_id}`)}
+            onClick={() => navigate(`/food-details/${_id}`)}
             className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600 rounded-md"
           >
             Details

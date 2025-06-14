@@ -1,11 +1,11 @@
 import React from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData } from "react-router";
 
 const FoodCard = () => {
     const foodDetailsData=useLoaderData()
    const foodDetails=foodDetailsData[0]
     
-  const navigate = useNavigate();
+//   const navigate = useNavigate();
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
@@ -27,14 +27,14 @@ const FoodCard = () => {
           <p><span className="font-semibold">Price:</span> ৳{foodDetails.price}</p>
         </div>
 
-        <div className="card-actions justify-end mt-4">
+        {/* <div className="card-actions justify-end mt-4">
           <button
             className="btn btn-primary"
             onClick={() => navigate(`/food-details/${food._id}`)}
           >
             Details
           </button>
-        </div>
+        </div> */}
       </div>
     </div>
   );
