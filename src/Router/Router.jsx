@@ -3,7 +3,9 @@ import Root from "../Root/Root.jsx";
 import Home from "../Pages/Home/Home.jsx";
 import LogIn from "../Pages/LogIn/LogIn.jsx";
 import Register from "../Pages/Register/Register.jsx";
-import AllFoods from "../Pages/AllFoods.jsx/AllFoods.jsx";
+import SingleFood from "../Pages/SingleFood/SingleFood.jsx";
+import AllFoods from "../Pages/AllFoods/AllFoods.jsx";
+
 const router = createBrowserRouter([
   {
     path: "/",
@@ -13,7 +15,12 @@ const router = createBrowserRouter([
       { path: "/log-in", element: <LogIn></LogIn> },
       { path: "/register", element: <Register></Register> },
       { path: "/gallery", element: <div>hi</div> },
-      { path: "/all-foods", element: <AllFoods></AllFoods>},
+      { path: "/all-foods", element: <AllFoods></AllFoods> },
+      {
+        path: "/food-details/:id",
+        hydrateFallbackElement: <div>Loading...</div>,loader:({params})=>fetch(`http://localhost:3000/recipes/${params.id}`),
+        element: <SingleFood></SingleFood>,
+      },
     ],
   },
 ]);
