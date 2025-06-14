@@ -1,11 +1,27 @@
 import React from "react";
-import { useLoaderData, useNavigate } from "react-router";
+import { useLoaderData} from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
 
-const FoodCard = () => {
+const PurchaseFood = () => {
+  const { user } = useAuth();
   const foodDetailsData = useLoaderData();
   const foodDetails = foodDetailsData[0];
 
-  const navigate = useNavigate();
+  const handlePurchase = () => {
+    const buyerName = user.displayName;
+    const buyerEmail = user.email;
+    const buyingDate = Date.now();
+    const buyingInfo = { ...foodDetails, buyerName, buyerEmail, buyingDate };
+
+
+    axios
+      .post("http://localhost:3000/purchaseData", buyingInfo)
+      .then((res) => console.log(res.data))
+      .catch((err) => console.log(err));
+  };
+
+ 
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
@@ -22,13 +38,15 @@ const FoodCard = () => {
 
         <div className="text-sm text-gray-600 space-y-1">
           <p>
-            <span className="font-semibold">Category:</span> {foodDetails.category}
+            <span className="font-semibold">Category:</span>{" "}
+            {foodDetails.category}
           </p>
           <p>
             <span className="font-semibold">Origin:</span> {foodDetails.origin}
           </p>
           <p>
-            <span className="font-semibold">Quantity:</span> {foodDetails.quantity}
+            <span className="font-semibold">Quantity:</span>{" "}
+            {foodDetails.quantity}
           </p>
           <p>
             <span className="font-semibold">Price:</span> ৳{foodDetails.price}
@@ -40,10 +58,7 @@ const FoodCard = () => {
         </div>
 
         <div className="card-actions justify-end mt-4">
-          <button
-            className="btn btn-primary"
-            onClick={() => navigate(`/Purchase/${foodDetails._id}`)}
-          >
+          <button className="btn btn-primary" onClick={handlePurchase}>
             Purchase
           </button>
         </div>
@@ -52,4 +67,4 @@ const FoodCard = () => {
   );
 };
 
-export default FoodCard;
+export default PurchaseFood;

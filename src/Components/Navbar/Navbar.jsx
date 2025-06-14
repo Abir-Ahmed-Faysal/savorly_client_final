@@ -91,7 +91,7 @@ const Navbar = () => {
                       <NavLink to="/add-food">Add Food</NavLink>
                     </li>
                     <li>
-                      <NavLink to="/orders">My Orders</NavLink>
+                      <NavLink to="/my-orders">My Orders</NavLink>
                     </li>
                     <li>
                       <button
