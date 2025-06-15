@@ -5,11 +5,13 @@ import useAuth from '../../Hooks/useAuth';
 
 const MyOrders = () => {
     const {user}=useAuth()
+    console.log(user.email);
+    
     return (
         <div>
-            thsi is my order page
+           
             <Suspense fallback={<div>Loading...</div>}>
-<OrderCard orderedData={orderedData(user.email)}></OrderCard>
+<OrderCard orderedList={orderedData(user.email)}></OrderCard>
             </Suspense>
         </div>
     );

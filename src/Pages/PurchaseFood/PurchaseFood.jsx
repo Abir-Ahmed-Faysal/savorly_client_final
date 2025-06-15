@@ -7,12 +7,14 @@ const PurchaseFood = () => {
   const { user } = useAuth();
   const foodDetailsData = useLoaderData();
   const foodDetails = foodDetailsData[0];
+  const {_id,...rest}=foodDetails
+  const foodDataId=_id
 
   const handlePurchase = () => {
     const buyerName = user.displayName;
     const buyerEmail = user.email;
     const buyingDate = Date.now();
-    const buyingInfo = { ...foodDetails, buyerName, buyerEmail, buyingDate };
+    const buyingInfo = { ...rest,foodDataId, buyerName, buyerEmail, buyingDate };
 
 
     axios
