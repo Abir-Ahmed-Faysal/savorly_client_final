@@ -1,12 +1,6 @@
-import axios from "axios";
-import React, { useState } from "react";
-import addedFoodData from "./addedFoodData";
-import useAuth from "../../Hooks/useAuth";
+import React from "react";
 
-const DataCard = ({ food }) => {
-  const [formData, setFormData] = useState(food);
-  const { user } = useAuth();
-
+const DataCard = ({ food, handleSubmit }) => {
   const {
     image,
     name,
@@ -17,33 +11,10 @@ const DataCard = ({ food }) => {
     quantity,
     origin,
     description,
-  } = formData;
+  } = food;
 
   const handleUpdate = () => {
     document.getElementById("my_modal_5").showModal();
-  };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const form = e.target;
-    const data = new FormData(form);
-    const updatedData = Object.fromEntries(data.entries());
-
-    updatedData.price = parseInt(updatedData.price);
-    updatedData.quantity = parseInt(updatedData.quantity);
-
-    axios
-      .patch(`http://localhost:3000/recipes/${_id}`, updatedData)
-      .then((res) => {
-        if (res.data.modifiedCount > 0) {
-          addedFoodData(user.email).then((res) => {
-            // Optional: fetch updated data
-            const updatedItem = res.find((item) => item._id === _id);
-            if (updatedItem) setFormData(updatedItem);
-          });
-        }
-        document.getElementById("my_modal_5").close();
-      });
   };
 
   return (
@@ -63,7 +34,7 @@ const DataCard = ({ food }) => {
         <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
             <h3 className="font-bold text-lg mb-4">Update Food Item</h3>
-            <form onSubmit={handleSubmit} className="space-y-3">
+            <form onSubmit={(e) => handleSubmit(e,_id)} className="space-y-3">
               <input
                 type="text"
                 name="name"
@@ -123,10 +94,10 @@ const DataCard = ({ food }) => {
                 <button type="submit" className="btn btn-primary">
                   Update
                 </button>
-                <form method="dialog">
-                  <button className="btn">Cancel</button>
-                </form>
               </div>
+            </form>
+            <form method="dialog">
+              <button className="btn">Cancel</button>
             </form>
           </div>
         </dialog>

@@ -1,18 +1,45 @@
-import React, { use } from 'react';
-import DataCard from './DataCard';
+import React, { use, useState } from "react";
+import DataCard from "./DataCard";
+import axios from "axios";
+import addedFoodData from "./addedFoodData";
+import useAuth from "../../Hooks/useAuth";
 
+const MyFoodCards = ({ foodList }) => {
+  const foodsList = use(foodList);
+  const [formData, setFormData] = useState(foodsList);
+  const { user } = useAuth();
 
-const MyFoodCards = ({foodList}) => {
-    const foodsList=use(foodList)
+  const handleSubmit = (e, id) => {
+    e.preventDefault();
+    const form = e.target;
+    const data = new FormData(form);
+    const updatedData = Object.fromEntries(data.entries());
 
+    updatedData.price = parseInt(updatedData.price);
+    updatedData.quantity = parseInt(updatedData.quantity);
 
-    return (
-        <div>
-           {
-            foodsList.map(food=><DataCard key={food._id} food={food}></DataCard>)
-           } 
-        </div>
-    );
+    axios
+      .patch(`http://localhost:3000/recipes/${id}`, updatedData)
+      .then((res) => {
+        if (res.data.modifiedCount > 0) {
+          addedFoodData(user.email).then((data) => setFormData(data));
+        }
+      });
+alert('updated')
+    document.getElementById("my_modal_5").close();
+  };
+
+  return (
+    <div>
+      {formData.map((food) => (
+        <DataCard
+          handleSubmit={handleSubmit}
+          key={food._id}
+          food={food}
+        ></DataCard>
+      ))}
+    </div>
+  );
 };
 
 export default MyFoodCards;
