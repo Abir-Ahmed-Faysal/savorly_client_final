@@ -45,7 +45,7 @@ const AllFoods = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pb-10">
           {foods.length !== 0 ? (
             foods.map((food) => (
-              <div key={food.id} className="card bg-base-100 shadow-xl">
+              <div key={food._id} className="card bg-base-100 shadow-xl">
                 <figure>
                   <img
                     src={food.image}

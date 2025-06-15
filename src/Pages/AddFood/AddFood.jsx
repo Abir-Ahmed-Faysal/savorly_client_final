@@ -1,5 +1,6 @@
 import React from "react";
 import useAuth from "../../Hooks/useAuth";
+import axios from "axios";
 
 const AddFood = () => {
   const { user } = useAuth();
@@ -10,7 +11,6 @@ const AddFood = () => {
     const formData = new FormData(form);
     const data = Object.fromEntries(formData.entries());
 
-  
     const foodItem = {
       name: data.name,
       image: data.image,
@@ -19,15 +19,17 @@ const AddFood = () => {
       price: parseInt(data.price),
       origin: data.origin,
       description: data.description,
-      purchaseCount: 0, 
+      purchaseCount: 0,
       addedBy: {
         name: user.displayName,
         email: user.email,
       },
     };
 
-    console.log(foodItem);
-   
+    axios
+      .post("http://localhost:3000/recipes", foodItem)
+      .then((res) => console.log(res.data))
+      .catch((error) => console.log(error));
   };
 
   return (
