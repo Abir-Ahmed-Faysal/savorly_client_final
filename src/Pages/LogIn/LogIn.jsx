@@ -3,13 +3,16 @@ import Lottie from "lottie-react";
 import LoginAnimation from "../../assets/LogIn.json";
 import { AuthContext } from "../../Context/AuthContext";
 import useAuth from "../../Hooks/useAuth";
-import { Link } from "react-router";
+import { Link, useNavigate } from "react-router";
 
 const LogIn = () => {
   const { signInByGoogle, signInUser } = useAuth();
+  const navigate=useNavigate()
   const googleSignIn = () => {
     signInByGoogle()
-      .then(() => alert("success"))
+      .then(() =>{ alert("success")
+        navigate('/')
+      })
       .catch((error) => console.log(error));
   };
   const handleFormData = (e) => {
@@ -19,7 +22,9 @@ const LogIn = () => {
     const password = form.password.value;
     console.log(email, password);
     signInUser(email, password)
-      .then(() => alert("success"))
+      .then(() =>{ alert("success")
+        navigate('/')
+      })
       .catch((error) => console.log(error));
   };
 

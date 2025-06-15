@@ -1,6 +1,6 @@
 import React from 'react';
 import useAuth from '../Hooks/useAuth';
-import { useLocation } from 'react-router';
+import { Navigate, useLocation } from 'react-router';
 
 const Secure = ({children}) => {
     const {user,loading}=useAuth()
@@ -10,7 +10,7 @@ const Secure = ({children}) => {
   }
 
   if (!user) {
-    return <Navigate to="/log-in" state={{ from: location }} replace />;
+    return <Navigate to="/log-in" state={{ from: location }}  />;
   }
     return (
         <div>

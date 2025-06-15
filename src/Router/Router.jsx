@@ -9,6 +9,7 @@ import Gallery from "../Pages/Gallery/Gallery.jsx";
 import PurchaseFood from "../Pages/PurchaseFood/PurchaseFood.jsx";
 import Secure from "../Secure/Secure.jsx";
 import MyOrders from "../Pages/MyOrders/MyOrders.jsx";
+import AddFood from "../Pages/AddFood/AddFood.jsx";
 
 const router = createBrowserRouter([
   {
@@ -43,6 +44,14 @@ const router = createBrowserRouter([
         element: (
           <Secure>
             <MyOrders></MyOrders>
+          </Secure>
+        ),
+      },
+      {
+        path: "/add-food",
+        element: (
+          <Secure>
+            <AddFood></AddFood>
           </Secure>
         ),
       },
