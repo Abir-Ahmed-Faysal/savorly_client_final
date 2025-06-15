@@ -1,29 +1,65 @@
-import React from "react";
-import { useLoaderData} from "react-router";
+import React, { useState } from "react";
+import { useLoaderData } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
+import { toast } from "react-toastify";
 
 const PurchaseFood = () => {
   const { user } = useAuth();
   const foodDetailsData = useLoaderData();
   const foodDetails = foodDetailsData[0];
-  const {_id,...rest}=foodDetails
-  const foodDataId=_id
+  const { _id, quantity, purchaseCount, ...rest } = foodDetails;
+  const [uiQuantity, setUiQuantity] = useState(quantity);
+  const [uiPurchaseCount, setUiPurchaseCount] = useState(purchaseCount);
+  const foodDataId = _id;
+
+  const [quantityValue, setQuantityValue] = useState(1);
 
   const handlePurchase = () => {
     const buyerName = user.displayName;
     const buyerEmail = user.email;
     const buyingDate = Date.now();
-    const buyingInfo = { ...rest,foodDataId, buyerName, buyerEmail, buyingDate };
+    const orderedQuantity = parseInt(quantityValue);
 
+    if (user.email === foodDetails.addedBy.email) {
+      return toast.error("You can't purchase your own food item");
+    }
+
+    if (isNaN(orderedQuantity) || orderedQuantity < 1) {
+      return toast.error("Please enter a valid quantity");
+    }
+
+    if (orderedQuantity > uiQuantity) {
+      return toast.error("Not enough quantity available");
+    }
+
+    const buyingInfo = {
+      ...rest,
+      foodDataId,
+      buyerName,
+      buyerEmail,
+      buyingDate,
+      orderedQuantity,
+      quantity: quantity - orderedQuantity,
+      purchaseCount: purchaseCount + orderedQuantity,
+    };
 
     axios
       .post("http://localhost:3000/purchaseData", buyingInfo)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+      .then((res) => {
+        if (res.data.insertedId) {
+          toast.success("Purchase successful!");
+          setUiPurchaseCount((prev) => prev + orderedQuantity);
+          setUiQuantity((prev) => prev - orderedQuantity);
+        } else {
+          toast.error("Purchase failed. Try again.");
+        }
+      })
+      .catch((err) => {
+        console.error(err);
+        toast.error("Something went wrong");
+      });
   };
-
- 
 
   return (
     <div className="card w-full bg-base-100 shadow-xl">
@@ -34,6 +70,7 @@ const PurchaseFood = () => {
           className="h-48 w-full object-cover"
         />
       </figure>
+
       <div className="card-body">
         <h2 className="card-title">{foodDetails.name}</h2>
         <p>{foodDetails.description}</p>
@@ -47,20 +84,45 @@ const PurchaseFood = () => {
             <span className="font-semibold">Origin:</span> {foodDetails.origin}
           </p>
           <p>
-            <span className="font-semibold">Quantity:</span>{" "}
-            {foodDetails.quantity}
+            <span className="font-semibold">Available Quantity:</span>{" "}
+            {uiQuantity}
           </p>
           <p>
             <span className="font-semibold">Price:</span> ৳{foodDetails.price}
           </p>
           <p>
             <span className="font-semibold">Purchase Count:</span>{" "}
-            {foodDetails.purchaseCount ?? 0}
+            {uiPurchaseCount}
           </p>
+
+          {uiQuantity === 0 && (
+            <p className="italic text-red-500 text-md font-semibold">
+              Item is not available now
+            </p>
+          )}
+
+          <div className="w-32 mt-2">
+            <label className="label">
+              <span className="label-text font-semibold">Quantity</span>
+            </label>
+            <input
+              value={quantityValue}
+              onChange={(e) => setQuantityValue(e.target.value)}
+              type="number"
+              min="1"
+              max={uiQuantity}
+              className="input input-bordered w-full"
+              placeholder="Enter quantity"
+            />
+          </div>
         </div>
 
         <div className="card-actions justify-end mt-4">
-          <button className="btn btn-primary" onClick={handlePurchase}>
+          <button
+            disabled={uiQuantity === 0}
+            className="btn btn-primary"
+            onClick={handlePurchase}
+          >
             Purchase
           </button>
         </div>

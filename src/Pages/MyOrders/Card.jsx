@@ -23,6 +23,7 @@ const Card = ({ order,handleDelete}) => {
  
  
   return (
+  
     <div className="bg-white shadow-lg rounded-xl p-4 relative">
       <img
         src={image}
