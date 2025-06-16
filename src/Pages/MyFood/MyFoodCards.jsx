@@ -1,8 +1,9 @@
 import React, { use, useState } from "react";
 import DataCard from "./DataCard";
-import axios from "axios";
+
 import addedFoodData from "./addedFoodData";
 import useAuth from "../../Hooks/useAuth";
+import dataPatch from "../DataPatch";
 
 const MyFoodCards = ({ foodList }) => {
   const foodsList = use(foodList);
@@ -18,9 +19,7 @@ const MyFoodCards = ({ foodList }) => {
     updatedData.price = parseInt(updatedData.price);
     updatedData.quantity = parseInt(updatedData.quantity);
 
-    axios
-      .patch(`http://localhost:3000/recipes/${id}`, updatedData)
-      .then((res) => {
+   dataPatch(id,updatedData).then((res) => {
         if (res.data.modifiedCount > 0) {
           addedFoodData(user.email).then((data) => setFormData(data));
         }

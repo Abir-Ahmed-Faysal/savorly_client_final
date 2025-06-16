@@ -33,7 +33,7 @@ const Gallery = () => {
             key={index}
             src={link}
             alt={`Image ${index + 1}`}
-            className="w-full h-48 object-cover rounded-lg cursor-pointer hover:scale-105 transition-transform duration-300 shadow-md"
+            className="w-full h-48 object-cover rounded-lg cursor-pointer  shadow-md"
             onClick={() => {
               setSelectedIndex(index);
               setOpen(true);

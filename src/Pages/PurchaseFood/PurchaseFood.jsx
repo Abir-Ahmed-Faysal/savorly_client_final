@@ -3,6 +3,7 @@ import { useLoaderData } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import axios from "axios";
 import { toast } from "react-toastify";
+import dataPatch from "../DataPatch";
 
 const PurchaseFood = () => {
   const { user } = useAuth();
@@ -43,14 +44,19 @@ const PurchaseFood = () => {
       quantity: quantity - orderedQuantity,
       purchaseCount: purchaseCount + orderedQuantity,
     };
-
+   
+const updateData={quantity:buyingInfo.quantity, purchaseCount:buyingInfo.purchaseCount}
     axios
       .post("http://localhost:3000/purchaseData", buyingInfo)
       .then((res) => {
         if (res.data.insertedId) {
-          toast.success("Purchase successful!");
-          setUiPurchaseCount((prev) => prev + orderedQuantity);
-          setUiQuantity((prev) => prev - orderedQuantity);
+          dataPatch(_id, updateData).then((res) => {
+            if (res.data.modifiedCount) {
+              toast.success("Purchase successful!");
+              setUiPurchaseCount((prev) => prev + orderedQuantity);
+              setUiQuantity((prev) => prev - orderedQuantity);
+            }
+          });
         } else {
           toast.error("Purchase failed. Try again.");
         }
@@ -91,7 +97,7 @@ const PurchaseFood = () => {
             <span className="font-semibold">Price:</span> ৳{foodDetails.price}
           </p>
           <p>
-            <span className="font-semibold">Purchase Count:</span>{" "}
+            <span className="font-semibold">Purchase Count:</span>
             {uiPurchaseCount}
           </p>
 
