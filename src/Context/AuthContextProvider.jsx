@@ -11,7 +11,20 @@ import {
 } from "firebase/auth";
 import { auth, provider } from "../Firebase_Config";
 
+
+
 const ContextProvider = ({ children }) => {
+  const [isDark, setIsDark] = useState(false); 
+
+  useEffect(() => {
+    document.documentElement.setAttribute("data-theme", isDark ? "dark" : "light");
+  }, [isDark]);
+
+  const toggleTheme = () => {
+    setIsDark(prev => !prev);
+  };
+
+  
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [photoURL, setPhotoURL] = useState(null);
@@ -60,7 +73,7 @@ const ContextProvider = ({ children }) => {
     updateUser,
     logOut,
     setDisplayName,
-    setPhotoURL,
+    setPhotoURL,toggleTheme, isDark,
     displayName,
     photoURL,
     loading,

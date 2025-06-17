@@ -9,7 +9,7 @@ const TopSellingFood = ({topSellingFoodData}) => {
 
     return (
         <div className='my-5'>
-            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 '>
+            <div className='grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 '>
                  { foods.map(food=><TopFoods key={food._id} food={food}></TopFoods>)}
             </div>
           

@@ -4,7 +4,6 @@ import { useNavigate } from 'react-router';
 const TopFoods = ({ food }) => {
   const navigate = useNavigate();
 
-
   const {
     _id,
     name,
@@ -14,14 +13,11 @@ const TopFoods = ({ food }) => {
     purchaseCount,
     origin,
     addedBy,
-  
   } = food;
 
   return (
     <div className="my-10 px-4">
-   
-
-      <div className="bg-white rounded-2xl shadow p-4 max-w-md mx-auto">
+      <div className="bg-base-100 text-base-content rounded-2xl shadow p-4 max-w-md mx-auto">
         <img
           src={image}
           alt={name}
@@ -29,21 +25,19 @@ const TopFoods = ({ food }) => {
         />
         <div>
           <h3 className="text-2xl font-semibold mb-1">{name}</h3>
-          <p className="text-gray-600 mb-1">Category: {category}</p>
-          <p className="text-gray-600 mb-1">Origin: {origin}</p>
-          <p className="text-gray-600 mb-1">Seller: {addedBy.name}</p>
-          <p className="text-gray-600 mb-1">Price: ৳{price}</p>
-          <p className="text-gray-600 mb-3">Purchased: {purchaseCount} times</p>
+          <p className="text-base-content/70 mb-1">Category: {category}</p>
+          <p className="text-base-content/70 mb-1">Origin: {origin}</p>
+          <p className="text-base-content/70 mb-1">Seller: {addedBy.name}</p>
+          <p className="text-base-content/70 mb-1">Price: ৳{price}</p>
+          <p className="text-base-content/70 mb-3">Purchased: {purchaseCount} times</p>
           <button
             onClick={() => navigate(`/food-details/${_id}`)}
-            className="btn btn-sm bg-blue-500 text-white hover:bg-blue-600 rounded-md"
+            className="btn btn-sm btn-primary rounded-md"
           >
             Details
           </button>
         </div>
       </div>
-
-   
     </div>
   );
 };

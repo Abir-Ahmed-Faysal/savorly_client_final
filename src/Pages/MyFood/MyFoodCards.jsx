@@ -3,6 +3,7 @@ import DataCard from "./DataCard";
 
 import useAuth from "../../Hooks/useAuth";
 import useApplicationApi from "../../apiFetch/useApplicationApi";
+import { toast } from "react-toastify";
 
 
 const MyFoodCards = ({ foodList }) => {
@@ -25,7 +26,7 @@ const MyFoodCards = ({ foodList }) => {
           getDataPromise(user.email).then((data) => setFormData(data));
         }
       });
-alert('updated')
+toast.success('updated')
     document.getElementById(`my_modal_${id}`).close();
   };
 

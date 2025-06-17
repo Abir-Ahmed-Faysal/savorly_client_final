@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const AddFood = () => {
   const { user } = useAuth();
-  const {dataPostPromise}=useApplicationApi()
+  const { dataPostPromise } = useApplicationApi();
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -29,13 +29,13 @@ const AddFood = () => {
       },
     };
 
-   dataPostPromise(foodItem)
+    dataPostPromise(foodItem)
       .then(() => toast.success(`${foodItem.name} added success`))
       .catch((error) => console.log(error));
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-white shadow rounded-md my-5">
+    <div className="max-w-2xl mx-auto p-6 bg-base-100 text-base-content shadow rounded-md my-5 transition-colors duration-300">
       <h1 className="text-3xl font-semibold mb-6 text-center">Add Recipe</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
@@ -44,7 +44,7 @@ const AddFood = () => {
             type="text"
             name="name"
             placeholder="Enter food name"
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
             required
           />
         </div>
@@ -55,7 +55,7 @@ const AddFood = () => {
             name="image"
             type="text"
             placeholder="Enter image URL"
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
             required
           />
         </div>
@@ -66,7 +66,7 @@ const AddFood = () => {
             name="category"
             type="text"
             placeholder="e.g. Rice, Dessert"
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
             required
           />
         </div>
@@ -78,7 +78,7 @@ const AddFood = () => {
             type="number"
             min="1"
             placeholder="Enter quantity"
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
             required
           />
         </div>
@@ -90,7 +90,7 @@ const AddFood = () => {
             name="price"
             min="0"
             placeholder="Enter price"
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
             required
           />
         </div>
@@ -102,7 +102,7 @@ const AddFood = () => {
               type="text"
               value={user.displayName}
               placeholder="User Name"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
               disabled
             />
           </div>
@@ -112,7 +112,7 @@ const AddFood = () => {
               type="email"
               value={user.email}
               placeholder="User Email"
-              className="w-full p-2 border rounded"
+              className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
               disabled
             />
           </div>
@@ -124,7 +124,7 @@ const AddFood = () => {
             name="origin"
             type="text"
             placeholder="Enter country name"
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
             required
           />
         </div>
@@ -134,7 +134,7 @@ const AddFood = () => {
           <textarea
             name="description"
             placeholder="Ingredients, making procedure, etc."
-            className="w-full p-2 border rounded"
+            className="w-full p-2 border border-base-content/20 rounded bg-base-200 text-base-content"
             rows="4"
             required
           ></textarea>
@@ -143,7 +143,7 @@ const AddFood = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="bg-green-600 text-white px-6 py-2 rounded hover:bg-green-700 transition"
+            className="btn btn-success hover:btn-success/90 transition"
           >
             Add Item
           </button>

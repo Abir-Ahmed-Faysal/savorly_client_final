@@ -4,6 +4,7 @@ import LoginAnimation from "../../assets/LogIn.json";
 import { AuthContext } from "../../Context/AuthContext";
 import useAuth from "../../Hooks/useAuth";
 import { Link, useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 const LogIn = () => {
   const { signInByGoogle, signInUser } = useAuth();
@@ -22,7 +23,7 @@ const LogIn = () => {
     const password = form.password.value;
     
     signInUser(email, password)
-      .then(() =>{ alert("success")
+      .then(() =>{ toast.success("login success")
         navigate('/')
       })
       .catch((error) => console.log(error));

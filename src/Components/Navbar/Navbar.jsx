@@ -1,46 +1,69 @@
 import React from "react";
+
+import "../../index.css";
 import { Link, NavLink, useLocation } from "react-router";
 import { FaSignInAlt } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
 import useAuth from "../../Hooks/useAuth";
+import { toast } from "react-toastify";
 
 const Navbar = () => {
-  const { user, logOut, loading } = useAuth();
+  const { user, logOut, loading, toggleTheme, isDark } = useAuth();
   const location = useLocation();
   const isHome = location.pathname === "/";
 
   const handleLogOut = () => {
     logOut()
-      .then(() => alert("log out success"))
+      .then(() => toast.success("log out success"))
       .catch((error) => console.log(error));
   };
 
   const link = (
     <>
       <li>
-        <NavLink to="/" className={isHome?'text-white':'text-black'}>Home</NavLink>
+        <NavLink
+          to="/"
+          className={isHome || isDark ? "text-white" : "text-black"}
+        >
+          Home
+        </NavLink>
       </li>
       <li>
-        <NavLink  to="/all-foods" className={isHome?'text-white':'text-black'}>All Foods</NavLink>
+        <NavLink
+          to="/all-foods"
+          className={isHome || isDark ? "text-white" : "text-black"}
+        >
+          All Foods
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/gallery" className={isHome?'text-white':'text-black'}>Gallery</NavLink>
+        <NavLink
+          to="/gallery"
+          className={isHome || isDark ? "text-white" : "text-black"}
+        >
+          Gallery
+        </NavLink>
       </li>
     </>
   );
 
   return (
     <>
-  
       <div
-        className={`navbar shadow-sm ${
-          isHome ? "bg-transparent absolute top-0 left-0 z-50" : "bg-base-100"
+        className={`navbar ${
+          isHome
+            ? "bg-transparent absolute top-0 left-0 z-50"
+            : "bg-base-100 shadow-sm"
         }`}
       >
         <div className="w-11/12 flex mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
-              <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+              <div
+                tabIndex={0}
+                role="button"
+                className="btn btn-ghost lg:hidden"
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   className="h-5 w-5"
@@ -48,19 +71,26 @@ const Navbar = () => {
                   viewBox="0 0 24 24"
                   stroke="currentColor"
                 >
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M4 6h16M4 12h8m-8 6h16" />
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M4 6h16M4 12h8m-8 6h16"
+                  />
                 </svg>
               </div>
               <ul
                 tabIndex={0}
-                className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
+                className={`menu menu-sm dropdown-content ${
+                  isHome ? "bg-black" : "bg-base-100"
+                } rounded-box z-10 mt-3 w-52 p-2 shadow`}
               >
                 {link}
               </ul>
             </div>
             <Link to="/">
               <img
-                className="h-20"
+                className={`h-20 ${isDark ? "invert brightness-0" : "null"}`}
                 alt="Savorly"
                 src="https://i.ibb.co/JFKwYhjk/Chat-GPT-Image-Jun-13-2025-09-40-13-AM.png"
               />
@@ -75,8 +105,12 @@ const Navbar = () => {
             {!loading ? (
               user ? (
                 <div className="dropdown dropdown-end">
-                  <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
-                    <div className="w-10 rounded-full">
+                  <div
+                    tabIndex={0}
+                    role="button"
+                    className="btn btn-ghost btn-circle avatar"
+                  >
+                    <div className="w-10  rounded-full">
                       <img alt="User" src={user?.photoURL} />
                     </div>
                   </div>
@@ -84,6 +118,7 @@ const Navbar = () => {
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
                   >
+                    <li onClick={toggleTheme}>{isDark ? "light" : "Dark"}</li>
                     <li>
                       <NavLink to="/my-foods">My Foods</NavLink>
                     </li>
@@ -115,21 +150,18 @@ const Navbar = () => {
         </div>
       </div>
 
-     
       {isHome && (
         <div
-          className="hero min-h-[70vh] bg-cover bg-center relative"
-          style={{
-            backgroundImage:
-              "url('https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&w=1170&q=80')",
-          }}
+          id="bannerImg"
+          className="hero min-h-[70vh] bg-cover bg-center relative "
         >
-          <div className="hero-overlay bg-black bg-opacity-60"></div>
+          <div className="hero-overlay  bg-opacity-60"></div>
           <div className="hero-content text-center text-white px-4">
             <div className="max-w-xl">
               <h1 className="text-4xl font-bold mb-4">Welcome to Savorly!</h1>
               <p className="mb-6 text-lg">
-                Discover a world of delightful flavors and delicious meals curated just for you.
+                Discover a world of delightful flavors and delicious meals
+                curated just for you.
               </p>
               <Link to="/all-foods" className="btn btn-accent text-white">
                 Explore All Foods

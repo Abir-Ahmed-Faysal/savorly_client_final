@@ -1,2 +1,6 @@
 @import "tailwindcss";
 @plugin "daisyui";
+
+#bannerImg {
+  background-image: url('https://i.ibb.co/fYMqgMTm/Bolinhos-de-Bacalhau-jpg-optimal.jpg');
+}

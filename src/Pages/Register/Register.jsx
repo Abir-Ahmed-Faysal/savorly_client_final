@@ -41,7 +41,7 @@ const Register = () => {
           .then(() => {
             setDisplayName(displayName),
               setPhotoURL(photoURL),
-              alert("success");
+              toast.success("sign up success");
             navigate("/");
           })
           .catch((error) => console.log(error));
