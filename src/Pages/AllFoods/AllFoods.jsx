@@ -9,7 +9,7 @@ const AllFoods = () => {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`http://localhost:3000/recipes?search=${search}`)
+    fetch(`https://savorly-lime.vercel.app/recipes?search=${search}`)
       .then((res) => res.json())
       .then((data) => {
         setFoods(data);

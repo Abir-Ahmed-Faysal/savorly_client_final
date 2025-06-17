@@ -27,14 +27,14 @@ const router = createBrowserRouter([
         path: "/food-details/:id",
         hydrateFallbackElement: <div>Loading...</div>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/recipes/${params.id}`),
+          fetch(`https://savorly-lime.vercel.app/recipes/${params.id}`),
         element: <SingleFood></SingleFood>,
       },
       {
         path: "/Purchase/:id",
         hydrateFallbackElement: <div>Loading...</div>,
         loader: ({ params }) =>
-          fetch(`http://localhost:3000/recipes/${params.id}`),
+          fetch(`https://savorly-lime.vercel.app/recipes/${params.id}`),
         element: (
           <Secure>
             <PurchaseFood></PurchaseFood>

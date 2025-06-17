@@ -51,8 +51,8 @@ const Register = () => {
 
   const handleGoogleRegister = () => {
     signInByGoogle()
-      .then((result) => {
-        console.log(result);
+      .then(() => {
+        toast.success('sign Up success');
         navigate("/");
       })
       .catch((err) => console.log(err));
@@ -82,7 +82,7 @@ const Register = () => {
 
           <h2 className="text-2xl font-bold mb-4 text-pink-600">Register</h2>
 
-          {/* Google Sign In */}
+        
           <div className="flex items-center pt-2 space-x-1 mb-4">
             <button
               onClick={handleGoogleRegister}

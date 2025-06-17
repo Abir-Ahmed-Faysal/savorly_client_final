@@ -115,7 +115,7 @@ const Navbar = () => {
         </div>
       </div>
 
-      {/* Banner (only on Home page) */}
+     
       {isHome && (
         <div
           className="hero min-h-[70vh] bg-cover bg-center relative"
