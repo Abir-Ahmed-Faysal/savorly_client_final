@@ -1,17 +1,18 @@
 import React, { Suspense } from 'react';
 import OrderCard from './OrderCard';
-import { orderedData } from './OrderedData';
+
 import useAuth from '../../Hooks/useAuth';
+import useApplicationApi from '../../apiFetch/useApplicationApi';
 
 const MyOrders = () => {
     const {user}=useAuth()
-    console.log(user.email);
+   const {purchaseData}=useApplicationApi()
     
     return (
         <div>
            
             <Suspense fallback={<div>Loading...</div>}>
-<OrderCard orderedList={orderedData(user.email)}></OrderCard>
+<OrderCard orderedList={purchaseData(user.email)}></OrderCard>
             </Suspense>
         </div>
     );

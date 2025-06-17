@@ -1,9 +1,12 @@
 import React from "react";
 import useAuth from "../../Hooks/useAuth";
-import axios from "axios";
+
+import useApplicationApi from "../../apiFetch/useApplicationApi";
+import { toast } from "react-toastify";
 
 const AddFood = () => {
   const { user } = useAuth();
+  const {dataPostPromise}=useApplicationApi()
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -26,9 +29,8 @@ const AddFood = () => {
       },
     };
 
-    axios
-      .post("http://localhost:3000/recipes", foodItem)
-      .then((res) => console.log(res.data))
+   dataPostPromise(foodItem)
+      .then(() => toast.success(`${foodItem.name} added success`))
       .catch((error) => console.log(error));
   };
 

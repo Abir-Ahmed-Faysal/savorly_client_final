@@ -3,8 +3,6 @@ import { useLoaderData, useNavigate } from "react-router";
 
 const FoodCard = () => {
   const foodDetails = useLoaderData();
-  console.log(foodDetails);
-  
   const navigate = useNavigate();
 
   return (

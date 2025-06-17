@@ -1,12 +1,81 @@
-# React + Vite
+# 🍽️ Savorly - Restaurant Management Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+🔗 **Live Link:** http://savorly-faysal.surge.sh/
 
-Currently, two official plugins are available:
+## 📌 Project Summary
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Savorly হলো একটি রেস্তোরাঁ ম্যানেজমেন্ট ওয়েবসাইট, যেখানে ইউজাররা খাবার যোগ করতে পারে, অর্ডার করতে পারে, এবং নিজস্ব অর্ডার বা খাবারগুলো পরিচালনা করতে পারে। এই প্রজেক্টটি MERN Stack (MongoDB, Express.js, React.js, Node.js) দিয়ে তৈরি।
 
-## Expanding the ESLint configuration
+---
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## 🔐 Features
+
+- User Authentication (Email/Password + Google Login)
+- JWT Protected Private Routes
+- Add, Update & View Foods
+- Food Purchase System (with quantity control)
+- User-based My Foods, My Orders
+- Responsive UI (Mobile, Tablet, Desktop)
+- Gallery Page with Lightbox
+- Theme Toggle (Light / Dark)
+- Search & Filter Foods by Name
+- Firebase & MongoDB secured with `.env`
+
+---
+
+## 📁 Main Pages
+
+- `/` - Home (Banner, Top Foods, Extra Sections)
+- `/foods` - All Foods with Search
+- `/food/:id` - Single Food Page
+- `/purchase/:id` - Buy Food (Private)
+- `/gallery` - Food Gallery
+- `/add-food` - Add New Food (Private)
+- `/my-foods` - View Your Foods (Private)
+- `/my-orders` - View Orders (Private)
+- `/login` & `/register` - Authentication
+
+---
+
+## 🔧 Technologies & Packages
+
+- **Frontend:** React, React Router, Tailwind CSS, DaisyUI
+- **Backend:** Node.js, Express.js, MongoDB
+- **Authentication:** Firebase + JWT
+- **Other Packages:**
+  - axios
+  - react-toastify
+  - react-icons
+  - moment
+  - lottie-react
+  - yet-another-react-lightbox
+  - framer-motion
+
+---
+
+## 🗂️ Important
+
+- ✅ 15+ Client Commits with clear messages
+- ✅ 8+ Server Commits with clear messages
+- ✅ `.env` used for Firebase & MongoDB credentials
+- ✅ Firebase domain added for authentication
+- ✅ No CORS / reload errors in live site
+- ✅ JWT applied on all private routes
+
+---
+
+## 📦 NPM Packages (from `npm ls`)
+
+- axios, firebase, moment, react-toastify, react-icons, tailwindcss, daisyui, lottie-react, framer-motion, yet-another-react-lightbox, react-tooltip, react-router, vite, eslint, etc.
+
+---
+
+## 👨‍💻 Author
+
+**Project Name:** Savorly  
+**Developer:** Md Faysal Hossain  
+**Live Site:** http://savorly-faysal.surge.sh/
+
+---
+
+🎯 **100% Feature Complete | Fully Responsive | Secure & Clean Design**

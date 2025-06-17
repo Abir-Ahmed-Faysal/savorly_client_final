@@ -3,11 +3,11 @@ import React from "react";
 import useAuth from "./useAuth";
 
 const axiosInstance = axios.create({
-  baseURL: "http://localhost:3000",
+  baseURL: "https://savorly-lime.vercel.app",
 });
 
 const useSecureApi = () => {
-  const { user } = useAuth();
+  const { user, logOut } = useAuth();
 
   axiosInstance.interceptors.request.use((config) => {
     if (user.accessToken) {
@@ -16,8 +16,23 @@ const useSecureApi = () => {
 
     return config;
   });
+  axiosInstance.interceptors.response.use(
+    (response) => {
+      return response;
+    },
+    (error) => {
+      logOut()
+        .then(() => {
+          console.log("signOut for 401 status code");
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+      return Promise.reject(error);
+    }
+  );
 
-  return axiosInstance
+  return axiosInstance;
 };
 
 export default useSecureApi;

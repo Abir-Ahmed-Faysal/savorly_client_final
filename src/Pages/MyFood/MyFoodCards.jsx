@@ -1,14 +1,15 @@
 import React, { use, useState } from "react";
 import DataCard from "./DataCard";
 
-import addedFoodData from "./addedFoodData";
 import useAuth from "../../Hooks/useAuth";
-import dataPatch from "../DataPatch";
+import useApplicationApi from "../../apiFetch/useApplicationApi";
+
 
 const MyFoodCards = ({ foodList }) => {
   const foodsList = use(foodList);
   const [formData, setFormData] = useState(foodsList);
   const { user } = useAuth();
+  const {getDataPromise,dataPatch}=useApplicationApi()
 
   const handleSubmit = (e, id) => {
     e.preventDefault();
@@ -21,7 +22,7 @@ const MyFoodCards = ({ foodList }) => {
 
    dataPatch(id,updatedData).then((res) => {
         if (res.data.modifiedCount > 0) {
-          addedFoodData(user.email).then((data) => setFormData(data));
+          getDataPromise(user.email).then((data) => setFormData(data));
         }
       });
 alert('updated')

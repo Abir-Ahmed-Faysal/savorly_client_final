@@ -1,15 +1,14 @@
 import React, { useState } from "react";
 import { useLoaderData } from "react-router";
 import useAuth from "../../Hooks/useAuth";
-import axios from "axios";
 import { toast } from "react-toastify";
-import dataPatch from "../DataPatch";
+import useApplicationApi from "../../apiFetch/useApplicationApi";
 
 const PurchaseFood = () => {
   const { user } = useAuth();
   const foodDetails = useLoaderData();
-  console.log(foodDetails);
-  
+  const { postPurchaseData, dataPatch } = useApplicationApi();
+
   const { _id, quantity, purchaseCount, ...rest } = foodDetails;
   const [uiQuantity, setUiQuantity] = useState(quantity);
   const [uiPurchaseCount, setUiPurchaseCount] = useState(purchaseCount);
@@ -50,8 +49,7 @@ const PurchaseFood = () => {
       quantity: buyingInfo.quantity,
       purchaseCount: buyingInfo.purchaseCount,
     };
-    axios
-      .post("http://localhost:3000/purchaseData", buyingInfo)
+    postPurchaseData(buyingInfo)
       .then((res) => {
         if (res.data.insertedId) {
           dataPatch(_id, updateData).then((res) => {

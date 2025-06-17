@@ -1,15 +1,15 @@
 import React, { Suspense } from "react";
 import MyFoodCards from "./MyFoodCards";
-
+import useApplicationApi from '../../apiFetch/useApplicationApi.jsx'
 import useAuth from "../../Hooks/useAuth";
-import useApplicationApi from "../../apiFetch/useApplicationApi";
+
 const MyFood = () => {
   const { user } = useAuth();
-  const { myApplicationPromise } = useApplicationApi();
+  const { getDataPromise } = useApplicationApi()
   return (
     <div>
       <Suspense fallback={<div>loading...</div>}>
-        <MyFoodCards foodList={myApplicationPromise(user.email)}></MyFoodCards>
+        <MyFoodCards foodList={getDataPromise(user.email)}></MyFoodCards>
       </Suspense>
     </div>
   );
