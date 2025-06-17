@@ -2,9 +2,9 @@ import React from "react";
 import { useLoaderData, useNavigate } from "react-router";
 
 const FoodCard = () => {
-  const foodDetailsData = useLoaderData();
-  const foodDetails = foodDetailsData[0];
-
+  const foodDetails = useLoaderData();
+  console.log(foodDetails);
+  
   const navigate = useNavigate();
 
   return (
@@ -22,13 +22,15 @@ const FoodCard = () => {
 
         <div className="text-sm text-gray-600 space-y-1">
           <p>
-            <span className="font-semibold">Category:</span> {foodDetails.category}
+            <span className="font-semibold">Category:</span>{" "}
+            {foodDetails.category}
           </p>
           <p>
             <span className="font-semibold">Origin:</span> {foodDetails.origin}
           </p>
           <p>
-            <span className="font-semibold">Quantity:</span> {foodDetails.quantity}
+            <span className="font-semibold">Quantity:</span>{" "}
+            {foodDetails.quantity}
           </p>
           <p>
             <span className="font-semibold">Price:</span> ৳{foodDetails.price}

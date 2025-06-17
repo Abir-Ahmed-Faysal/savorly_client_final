@@ -74,7 +74,7 @@ const AddFood = () => {
           <input
             name="quantity"
             type="number"
-            min="0"
+            min="1"
             placeholder="Enter quantity"
             className="w-full p-2 border rounded"
             required

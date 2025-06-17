@@ -10,7 +10,7 @@ const LogIn = () => {
   const navigate=useNavigate()
   const googleSignIn = () => {
     signInByGoogle()
-      .then(() =>{ alert("success")
+      .then(() =>{ 
         navigate('/')
       })
       .catch((error) => console.log(error));

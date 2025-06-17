@@ -14,7 +14,7 @@ const DataCard = ({ food, handleSubmit }) => {
   } = food;
 
   const handleUpdate = () => {
-    document.getElementById("my_modal_5").showModal();
+    document.getElementById(`my_modal_${_id}`).showModal();
   };
 
   return (
@@ -31,7 +31,7 @@ const DataCard = ({ food, handleSubmit }) => {
           Update
         </button>
 
-        <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <dialog id={`my_modal_${_id}`} className="modal modal-bottom sm:modal-middle">
           <div className="modal-box">
             <h3 className="font-bold text-lg mb-4">Update Food Item</h3>
             <form onSubmit={(e) => handleSubmit(e,_id)} className="space-y-3">

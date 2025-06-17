@@ -7,8 +7,9 @@ import dataPatch from "../DataPatch";
 
 const PurchaseFood = () => {
   const { user } = useAuth();
-  const foodDetailsData = useLoaderData();
-  const foodDetails = foodDetailsData[0];
+  const foodDetails = useLoaderData();
+  console.log(foodDetails);
+  
   const { _id, quantity, purchaseCount, ...rest } = foodDetails;
   const [uiQuantity, setUiQuantity] = useState(quantity);
   const [uiPurchaseCount, setUiPurchaseCount] = useState(purchaseCount);
@@ -44,8 +45,11 @@ const PurchaseFood = () => {
       quantity: quantity - orderedQuantity,
       purchaseCount: purchaseCount + orderedQuantity,
     };
-   
-const updateData={quantity:buyingInfo.quantity, purchaseCount:buyingInfo.purchaseCount}
+
+    const updateData = {
+      quantity: buyingInfo.quantity,
+      purchaseCount: buyingInfo.purchaseCount,
+    };
     axios
       .post("http://localhost:3000/purchaseData", buyingInfo)
       .then((res) => {

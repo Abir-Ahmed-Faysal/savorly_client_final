@@ -25,7 +25,7 @@ const MyFoodCards = ({ foodList }) => {
         }
       });
 alert('updated')
-    document.getElementById("my_modal_5").close();
+    document.getElementById(`my_modal_${id}`).close();
   };
 
   return (
