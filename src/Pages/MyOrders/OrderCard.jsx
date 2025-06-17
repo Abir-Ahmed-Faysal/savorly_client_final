@@ -20,7 +20,7 @@ const OrderCard = ({ orderedList }) => {
   };
 
   return (
-    <div>
+    <div className="grid grid-cols-1 md:grid-cols-2 items-center justify-center gap-5 ">
       {orders.length !== 0 ? (
         orders.map((order) => (
           <Card

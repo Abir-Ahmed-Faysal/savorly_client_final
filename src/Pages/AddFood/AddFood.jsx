@@ -32,6 +32,7 @@ const AddFood = () => {
     dataPostPromise(foodItem)
       .then(() => toast.success(`${foodItem.name} added success`))
       .catch((error) => console.log(error));
+      form.reset();
   };
 
   return (

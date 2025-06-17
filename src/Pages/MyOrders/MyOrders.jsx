@@ -9,7 +9,7 @@ const MyOrders = () => {
    const {purchaseData}=useApplicationApi()
     
     return (
-        <div>
+        <div >
            
             <Suspense fallback={<div>Loading...</div>}>
 <OrderCard orderedList={purchaseData(user.email)}></OrderCard>

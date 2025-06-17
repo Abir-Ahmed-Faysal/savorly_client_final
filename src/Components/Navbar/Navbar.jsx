@@ -1,4 +1,6 @@
 import React from "react";
+import { FaSun, FaMoon } from "react-icons/fa";
+
 
 import "../../index.css";
 import { Link, NavLink, useLocation } from "react-router";
@@ -118,7 +120,21 @@ const Navbar = () => {
                     tabIndex={0}
                     className="menu menu-sm dropdown-content bg-base-100 rounded-box z-10 mt-3 w-52 p-2 shadow"
                   >
-                    <li onClick={toggleTheme}>{isDark ? "light" : "Dark"}</li>
+                    <li
+                      onClick={toggleTheme}
+                      className="cursor-pointer flex items-center gap-2"
+                    >
+                      {isDark ? (
+                        <>
+                          <FaSun className="text-yellow-400" />{" "}
+                          <span>Light</span>
+                        </>
+                      ) : (
+                        <>
+                          <FaMoon className="text-blue-500" /> <span>Dark</span>
+                        </>
+                      )}
+                    </li>
                     <li>
                       <NavLink to="/my-foods">My Foods</NavLink>
                     </li>

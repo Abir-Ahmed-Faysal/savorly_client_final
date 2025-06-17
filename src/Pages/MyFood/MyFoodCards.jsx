@@ -27,6 +27,7 @@ const MyFoodCards = ({ foodList }) => {
         }
       });
 toast.success('updated')
+ e.target.reset();
     document.getElementById(`my_modal_${id}`).close();
   };
 

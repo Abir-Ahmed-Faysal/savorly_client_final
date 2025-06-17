@@ -35,61 +35,96 @@ const DataCard = ({ food, handleSubmit }) => {
           <div className="modal-box bg-base-100 text-base-content">
             <h3 className="font-bold text-lg mb-4">Update Food Item</h3>
             <form onSubmit={(e) => handleSubmit(e, _id)} className="space-y-3">
-              <input
-                type="text"
-                name="name"
-                defaultValue={name}
-                placeholder="Name"
-                className="input input-bordered w-full bg-base-200 text-base-content"
-                required
-              />
-              <input
-                type="text"
-                name="image"
-                defaultValue={image}
-                placeholder="Image URL"
-                className="input input-bordered w-full bg-base-200 text-base-content"
-                required
-              />
-              <input
-                type="text"
-                name="category"
-                defaultValue={category}
-                placeholder="Category"
-                className="input input-bordered w-full bg-base-200 text-base-content"
-                required
-              />
-              <input
-                type="number"
-                name="quantity"
-                defaultValue={quantity}
-                placeholder="Quantity"
-                className="input input-bordered w-full bg-base-200 text-base-content"
-                required
-              />
-              <input
-                type="number"
-                name="price"
-                defaultValue={price}
-                placeholder="Price"
-                className="input input-bordered w-full bg-base-200 text-base-content"
-                required
-              />
-              <input
-                type="text"
-                name="origin"
-                defaultValue={origin}
-                placeholder="Origin"
-                className="input input-bordered w-full bg-base-200 text-base-content"
-                required
-              />
-              <textarea
-                name="description"
-                defaultValue={description}
-                placeholder="Description"
-                className="textarea textarea-bordered w-full bg-base-200 text-base-content"
-                required
-              />
+              <div>
+                <label className="label">
+                  <span className="label-text">Name</span>
+                </label>
+                <input
+                  type="text"
+                  name="name"
+                  defaultValue={name}
+                  placeholder="Name"
+                  className="input input-bordered w-full bg-base-200 text-base-content"
+                  required
+                />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Image URL</span>
+                </label>
+                <input
+                  type="text"
+                  name="image"
+                  defaultValue={image}
+                  placeholder="Image URL"
+                  className="input input-bordered w-full bg-base-200 text-base-content"
+                  required
+                />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Category</span>
+                </label>
+                <input
+                  type="text"
+                  name="category"
+                  defaultValue={category}
+                  placeholder="Category"
+                  className="input input-bordered w-full bg-base-200 text-base-content"
+                  required
+                />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Quantity</span>
+                </label>
+                <input
+                  type="number"
+                  name="quantity"
+                  defaultValue={quantity}
+                  placeholder="Quantity"
+                  className="input input-bordered w-full bg-base-200 text-base-content"
+                  required
+                />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Price</span>
+                </label>
+                <input
+                  type="number"
+                  name="price"
+                  defaultValue={price}
+                  placeholder="Price"
+                  className="input input-bordered w-full bg-base-200 text-base-content"
+                  required
+                />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Origin</span>
+                </label>
+                <input
+                  type="text"
+                  name="origin"
+                  defaultValue={origin}
+                  placeholder="Origin"
+                  className="input input-bordered w-full bg-base-200 text-base-content"
+                  required
+                />
+              </div>
+              <div>
+                <label className="label">
+                  <span className="label-text">Description</span>
+                </label>
+                <textarea
+                  name="description"
+                  defaultValue={description}
+                  placeholder="Description"
+                  className="textarea textarea-bordered w-full bg-base-200 text-base-content"
+                  required
+                />
+              </div>
               <div className="modal-action">
                 <button type="submit" className="btn btn-primary">
                   Update
