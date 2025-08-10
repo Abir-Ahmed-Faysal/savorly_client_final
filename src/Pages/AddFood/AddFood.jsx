@@ -144,7 +144,7 @@ const AddFood = () => {
         <div className="text-center">
           <button
             type="submit"
-            className="btn btn-success hover:btn-success/90 transition"
+            className="btn bg-[rgb(218,102,87)] hover:btn-success/90 transition"
           >
             Add Item
           </button>

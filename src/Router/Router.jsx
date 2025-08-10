@@ -11,12 +11,16 @@ import Secure from "../Secure/Secure.jsx";
 import MyOrders from "../Pages/MyOrders/MyOrders.jsx";
 import AddFood from "../Pages/AddFood/AddFood.jsx";
 import MyFood from "../Pages/MyFood/MyFood.jsx";
+import ErrorPage from "../Pages/ErrorPage.jsx";
+import ErrorRoute from "./ErrorRoute.jsx";
+import Spinner from "../Components/Spinner/Spinner.jsx";
 
 
 const router = createBrowserRouter([
   {
     path: "/",
     element: <Root></Root>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       { index: true, element: <Home></Home> },
       { path: "/log-in", element: <LogIn></LogIn> },
@@ -25,14 +29,14 @@ const router = createBrowserRouter([
       { path: "/all-foods", element: <AllFoods></AllFoods> },
       {
         path: "/food-details/:id",
-        hydrateFallbackElement: <div>Loading...</div>,
+        hydrateFallbackElement: <Spinner></Spinner>,
         loader: ({ params }) =>
           fetch(`https://savorly-lime.vercel.app/recipes/${params.id}`),
         element: <SingleFood></SingleFood>,
       },
       {
         path: "/Purchase/:id",
-        hydrateFallbackElement: <div>Loading...</div>,
+        hydrateFallbackElement: <Spinner></Spinner>,
         loader: ({ params }) =>
           fetch(`https://savorly-lime.vercel.app/recipes/${params.id}`),
         element: (
@@ -64,7 +68,9 @@ const router = createBrowserRouter([
             <MyFood></MyFood>
           </Secure>
         ),
-      },
+      },{
+        path: '*', Component: ErrorRoute
+      }
      
     ],
   },

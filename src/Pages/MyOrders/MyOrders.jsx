@@ -3,6 +3,7 @@ import OrderCard from './OrderCard';
 
 import useAuth from '../../Hooks/useAuth';
 import useApplicationApi from '../../apiFetch/useApplicationApi';
+import Spinner from '../../Components/Spinner/Spinner';
 
 const MyOrders = () => {
     const {user}=useAuth()
@@ -11,7 +12,7 @@ const MyOrders = () => {
     return (
         <div >
            
-            <Suspense fallback={<div>Loading...</div>}>
+            <Suspense fallback={<Spinner></Spinner>}>
 <OrderCard orderedList={purchaseData(user.email)}></OrderCard>
             </Suspense>
         </div>

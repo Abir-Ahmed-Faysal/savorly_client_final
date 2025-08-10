@@ -8,11 +8,11 @@ const TopFoods = ({ food }) => {
     _id,
     name,
     image,
-    category,
+   
     price,
-    purchaseCount,
-    origin,
-    addedBy,
+   
+    description
+    
   } = food;
 
   return (
@@ -24,15 +24,18 @@ const TopFoods = ({ food }) => {
           className="w-full h-56 object-cover rounded-xl mb-4"
         />
         <div>
-          <h3 className="text-2xl font-semibold mb-1">{name}</h3>
-          <p className="text-base-content/70 mb-1">Category: {category}</p>
-          <p className="text-base-content/70 mb-1">Origin: {origin}</p>
-          <p className="text-base-content/70 mb-1">Seller: {addedBy.name}</p>
-          <p className="text-base-content/70 mb-1">Price: ৳{price}</p>
-          <p className="text-base-content/70 mb-3">Purchased: {purchaseCount} times</p>
+          <h3 className="lg:text-2xl md:text-xl text-lg font-semibold mb-1">{name}</h3>
+          <p>Description</p>
+          <div  >
+<p className="line-clamp-2">{description}</p>
+          </div>
+            <h1 className='font-bold text-center md:text-md lg:text-xl  text-base-content my-1'>${price}</h1>
+          <div>
+            
+          </div>
           <button
             onClick={() => navigate(`/food-details/${_id}`)}
-            className="btn btn-sm btn-primary rounded-md"
+            className="btn  btn-block bg-[rgb(255,141,107)] rounded-xl"
           >
             Details
           </button>

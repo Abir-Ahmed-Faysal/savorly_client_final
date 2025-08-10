@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
+import useAuth from "../../Hooks/useAuth";
+import Spinner from "../../Components/Spinner/Spinner";
 
 const AllFoods = () => {
   const [foods, setFoods] = useState([]);
-  const [search, setSearch] = useState("");
   const [loading, setLoading] = useState(true);
+  const [search, setSearch] = useState("");
+  const [sortOrder, setSortOrder] = useState(""); 
   const navigate = useNavigate();
+  const {isDark}=useAuth()
 
   useEffect(() => {
     setLoading(true);
@@ -21,13 +25,24 @@ const AllFoods = () => {
       });
   }, [search]);
 
+  
+  const sortedFoods = [...foods].sort((a, b) => {
+    if (sortOrder === "low-to-high") {
+      return a.price - b.price;
+    } else if (sortOrder === "high-to-low") {
+      return b.price - a.price;
+    }
+    return 0;
+  });
+
   return (
     <div>
-      <div className="bg-gradient-to-r from-pink-200 to-yellow-100 py-10 text-center">
+    <div className={`${!isDark ? "bg-gradient-to-r from-pink-200 to-yellow-100" : ""} py-10 text-center`}>
+
         <h1 className="text-4xl font-bold">All Foods</h1>
       </div>
 
-      <div className="flex justify-center my-6">
+      <div className="flex flex-col md:flex-row justify-center items-center gap-4 my-6 px-4">
         <input
           type="text"
           placeholder="Search food..."
@@ -35,16 +50,24 @@ const AllFoods = () => {
           value={search}
           onChange={(e) => setSearch(e.target.value)}
         />
+
+        <select
+          className="select select-bordered max-w-xs"
+          value={sortOrder}
+          onChange={(e) => setSortOrder(e.target.value)}
+        >
+          <option value="">Sort by</option>
+          <option value="low-to-high">Price: Low to High</option>
+          <option value="high-to-low">Price: High to Low</option>
+        </select>
       </div>
 
       {loading ? (
-        <div className="flex justify-center items-center h-40">
-          <span className="loading loading-spinner loading-lg text-primary"></span>
-        </div>
+        <Spinner></Spinner>
       ) : (
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 px-4 pb-10">
-          {foods.length !== 0 ? (
-            foods.map((food) => (
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 pb-10">
+          {sortedFoods.length !== 0 ? (
+            sortedFoods.map((food) => (
               <div key={food._id} className="card bg-base-100 shadow-xl">
                 <figure>
                   <img
@@ -53,16 +76,19 @@ const AllFoods = () => {
                     className="h-48 w-full object-cover"
                   />
                 </figure>
-                <div className="card-body">
-                  <h2 className="card-title">{food.name}</h2>
-                  <p>{food.description}</p>
-                  <p>
-                    <span className="font-semibold">Quantity:</span>{" "}
-                    {food.quantity}
+                <div className="card-body p-4 md:p-6">
+                  <h2 className="font-bold text-base md:text-lg lg:text-xl">{food.name}</h2>
+                  
+                  <p className="text-sm md:text-base text-gray-600 font-medium mt-1">Description</p>
+                  <p className="text-sm max-w-[] line-clamp-3 md:text-base text-gray-700 mb-3">{food.description}</p>
+                  
+                  <p className="text-center font-bold text-md md:text-xl lg:text-2xl  my-2">
+                    ${food.price}
                   </p>
-                  <div className="card-actions justify-end">
+
+                  <div className="card-actions justify-end md:mt-4">
                     <button
-                      className="btn btn-primary"
+                      className="btn bg-[rgb(218,102,87)] btn-block rounded-xl text-sm md:text-base"
                       onClick={() => navigate(`/food-details/${food._id}`)}
                     >
                       Details

@@ -1,12 +1,13 @@
 import React from 'react';
 import useAuth from '../Hooks/useAuth';
 import { Navigate, useLocation } from 'react-router';
+import Spinner from '../Components/Spinner/Spinner';
 
 const Secure = ({children}) => {
     const {user,loading}=useAuth()
       const location = useLocation();
  if (loading) {
-    return <div className="text-center mt-10">Loading...</div>; 
+    return <Spinner></Spinner>; 
   }
 
   if (!user) {

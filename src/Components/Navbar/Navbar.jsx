@@ -1,18 +1,62 @@
-import React from "react";
-import { FaSun, FaMoon } from "react-icons/fa";
-
-
-import "../../index.css";
-import { Link, NavLink, useLocation } from "react-router";
-import { FaSignInAlt } from "react-icons/fa";
+import React, { useState, useEffect, useRef } from "react";
+import { FaSun, FaMoon, FaSignInAlt } from "react-icons/fa";
 import { FiLogOut } from "react-icons/fi";
+import { Link, NavLink, useLocation } from "react-router";
 import useAuth from "../../Hooks/useAuth";
 import { toast } from "react-toastify";
+import Spinner from "../Spinner/Spinner";
 
 const Navbar = () => {
   const { user, logOut, loading, toggleTheme, isDark } = useAuth();
   const location = useLocation();
   const isHome = location.pathname === "/";
+
+  const [scrolled, setScrolled] = useState(false);
+
+  // refs for measuring / observing
+  const navbarRef = useRef(null);
+  const bannerRef = useRef(null);
+
+  // Observe banner so nav background appears only after banner is scrolled past
+  useEffect(() => {
+    if (!isHome) return; // only observe on home
+
+    const banner = bannerRef.current;
+    const nav = navbarRef.current;
+    if (!banner || !nav) return;
+
+    // Use IntersectionObserver and set rootMargin to nav height so
+    // the background appears when the banner's bottom crosses the navbar.
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          // when banner is not intersecting (scrolled past), we set scrolled = true
+          setScrolled(!entry.isIntersecting);
+        });
+      },
+      {
+        root: null,
+        threshold: 0,
+        rootMargin: `-${nav.offsetHeight}px 0px 0px 0px`,
+      }
+    );
+
+    observer.observe(banner);
+
+    // initial check (useful if user reloads mid-page)
+    const check = () => {
+      const rect = banner.getBoundingClientRect();
+      setScrolled(rect.bottom <= nav.offsetHeight);
+    };
+    check();
+
+    window.addEventListener("resize", check);
+
+    return () => {
+      observer.disconnect();
+      window.removeEventListener("resize", check);
+    };
+  }, [isHome]);
 
   const handleLogOut = () => {
     logOut()
@@ -46,18 +90,49 @@ const Navbar = () => {
           Gallery
         </NavLink>
       </li>
+      {user && (
+        <>
+          <li>
+            <NavLink
+              to="/my-foods"
+              className={isHome || isDark ? "text-white" : "text-black"}
+            >
+              My Food
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/add-food"
+              className={isHome || isDark ? "text-white" : "text-black"}
+            >
+              Add Food
+            </NavLink>
+          </li>
+          <li>
+            <NavLink
+              to="/my-orders"
+              className={isHome || isDark ? "text-white" : "text-black"}
+            >
+              My Order
+            </NavLink>
+          </li>
+        </>
+      )}
     </>
   );
 
+  // add transition classes for a smooth fade
+  const navbarClasses = `navbar transition-colors duration-300 ${
+    isHome
+      ? scrolled
+        ? "bg-[rgb(255,141,107)] shadow-sm fixed top-0 left-0 w-full z-50"
+        : "bg-transparent absolute top-0 left-0 w-full z-50"
+      : "bg-base-100 shadow-sm fixed top-0 left-0 w-full z-50"
+  }`;
+
   return (
     <>
-      <div
-        className={`navbar ${
-          isHome
-            ? "bg-transparent absolute top-0 left-0 z-50"
-            : "bg-base-100 shadow-sm"
-        }`}
-      >
+      <div ref={navbarRef} className={navbarClasses}>
         <div className="w-11/12 flex mx-auto">
           <div className="navbar-start">
             <div className="dropdown">
@@ -92,9 +167,9 @@ const Navbar = () => {
             </div>
             <Link to="/">
               <img
-                className={`h-20 ${isDark ? "invert brightness-0" : "null"}`}
+                className={`h-20 invert brightness-0`}
                 alt="Savorly"
-                src="https://i.ibb.co/JFKwYhjk/Chat-GPT-Image-Jun-13-2025-09-40-13-AM.png"
+                src="https://i.ibb.co.com/99P351F8/Savorly-Logo-Nav-2ef8e390c54a5606a9cd012341f38541.png"
               />
             </Link>
           </div>
@@ -160,7 +235,7 @@ const Navbar = () => {
                 </Link>
               )
             ) : (
-              <div>Loading...</div>
+              <Spinner />
             )}
           </div>
         </div>
@@ -169,17 +244,21 @@ const Navbar = () => {
       {isHome && (
         <div
           id="bannerImg"
-          className="hero min-h-[70vh] bg-cover bg-center relative "
+          ref={bannerRef}
+          className="hero min-h-[70vh] bg-cover bg-center relative"
         >
-          <div className="hero-overlay  bg-opacity-60"></div>
+          <div className="hero-overlay bg-opacity-60"></div>
           <div className="hero-content text-center text-white px-4">
             <div className="max-w-xl">
-              <h1 className="text-4xl font-bold mb-4">Welcome to Savorly!</h1>
+              <h1 className="text-4xl font-bold mb-4">Welcome to Savourly!</h1>
               <p className="mb-6 text-lg">
                 Discover a world of delightful flavors and delicious meals
                 curated just for you.
               </p>
-              <Link to="/all-foods" className="btn btn-accent text-white">
+              <Link
+                to="/all-foods"
+                className="btn bg-[rgb(255,141,107)] text-white hover:bg-[rgb(255,141,107)]"
+              >
                 Explore All Foods
               </Link>
             </div>

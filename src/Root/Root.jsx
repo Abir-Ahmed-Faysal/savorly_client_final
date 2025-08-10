@@ -6,15 +6,17 @@ import { ToastContainer } from "react-toastify";
 // import useAuth from "../Hooks/useAuth";
 
 const Root = () => {
-  // const {loading}=useAuth()
+  
   return (
-    <div>
-      <>
-        <ToastContainer  />
+    <div className="relative">
+    
+        <ToastContainer />
         <Navbar></Navbar>
-        <Outlet></Outlet>
+        <div className="min-h-screen ">
+          <Outlet></Outlet>
+        </div>
         <Footer></Footer>
-      </>
+     
     </div>
   );
 };

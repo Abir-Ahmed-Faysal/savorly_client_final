@@ -15,6 +15,7 @@ const DataCard = ({ food, handleSubmit }) => {
 
   const handleUpdate = () => {
     document.getElementById(`my_modal_${_id}`).showModal();
+
   };
 
   return (
@@ -26,7 +27,7 @@ const DataCard = ({ food, handleSubmit }) => {
         <p className="text-sm mb-3">Sold: {purchaseCount}</p>
         <button
           onClick={handleUpdate}
-          className="w-full py-2 bg-primary text-primary-content text-sm font-medium rounded hover:bg-primary-focus transition"
+          className="w-full py-2 bg-[rgb(218,102,87)]  text-primary-content text-sm font-medium  hover:bg-primary-focus transition rounded-xl"
         >
           Update
         </button>
@@ -126,7 +127,7 @@ const DataCard = ({ food, handleSubmit }) => {
                 />
               </div>
               <div className="modal-action">
-                <button type="submit" className="btn btn-primary">
+                <button type="submit" className="btn bg[rgb(218,102,87)]">
                   Update
                 </button>
               </div>
