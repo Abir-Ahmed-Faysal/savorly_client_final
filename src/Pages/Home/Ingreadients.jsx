@@ -3,7 +3,7 @@ import { useNavigate } from "react-router";
 export default function IngredientsSection() {
   const navigate = useNavigate();
   return (
-    <section className="py-16 rounded-2xl bg-base-100 text-base-content text-base transition-colors duration-500">
+    <section className="py-6 rounded-2xl bg-base-100 text-base-content text-base transition-colors duration-500">
       <div className="container mx-auto flex flex-col md:flex-row items-center md:items-start px-6 md:px-12">
 
         {/* Text Section */}
