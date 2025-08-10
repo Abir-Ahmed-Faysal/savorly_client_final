@@ -55,7 +55,7 @@ const Home = () => {
 
       </section>
 
-      <section className="bg-[rgb(249,237,216)] dark:text-white p-10 rounded-2xl shadow-xl  text-center">
+      <section className=" p-10 rounded-2xl shadow-xl  text-center">
         <h2 className="text-4xl font-bold mb-4">
           📬 Subscribe to Our Newsletter
         </h2>
@@ -67,7 +67,7 @@ const Home = () => {
           <input
             type="email"
             placeholder="Enter your email"
-            className="input input-bordered w-full sm:w-96 dark:text-white text-black"
+            className="input input-bordered w-full sm:w-96 "
             required
           />
           <button

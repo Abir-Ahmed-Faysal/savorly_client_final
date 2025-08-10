@@ -7,9 +7,9 @@ const Footer = () => {
 
   return (
     <div className="w-full bg-[rgb(255,141,107)] text-neutral-content">
-      <footer className="footer max-w-7xl mx-auto py-10 flex flex-col items-center gap-10">
+      <footer className="footer max-w-11/12 mx-auto py-10 flex flex-col items-center gap-10">
         {/* Three columns side by side */}
-        <div className="w-full flex flex-col md:flex-row justify-between items-start md:items-center gap-10">
+        <div className="w-full flex flex-col md:flex-row justify-between items-center md:items-start gap-10">
           {/* Logo / Brand */}
           <aside className="flex-1 text-center md:text-left">
             <img
@@ -94,8 +94,8 @@ const Footer = () => {
         </div>
 
         {/* Copyright */}
-        <div className="w-full text-center text-sm opacity-70">
-          © {new Date().getFullYear()} SavorySaver. All rights reserved.
+        <div className="w-full  text-center justify-center md:justify-start  text-sm opacity-70">
+          <p>© {new Date().getFullYear()} SavorySaver. All rights reserved.</p>
         </div>
       </footer>
     </div>
