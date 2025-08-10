@@ -10,7 +10,7 @@ const MyOrders = () => {
    const {purchaseData}=useApplicationApi()
     
     return (
-        <div >
+        <div className='md:mt-36 space-y-8 md:space-y-16' >
            
             <Suspense fallback={<Spinner></Spinner>}>
 <OrderCard orderedList={purchaseData(user.email)}></OrderCard>

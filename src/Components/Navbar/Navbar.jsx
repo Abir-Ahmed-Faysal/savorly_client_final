@@ -69,7 +69,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/"
-          className={isHome || isDark ? "text-white" : "text-black"}
+          className={ !isDark ? "text-white" : "text-black"}
         >
           Home
         </NavLink>
@@ -77,7 +77,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/all-foods"
-          className={isHome || isDark ? "text-white" : "text-black"}
+          className={ !isDark ? "text-white" : "text-black"}
         >
           All Foods
         </NavLink>
@@ -85,7 +85,7 @@ const Navbar = () => {
       <li>
         <NavLink
           to="/gallery"
-          className={isHome || isDark ? "text-white" : "text-black"}
+          className={ !isDark ? "text-white" : "text-black"}
         >
           Gallery
         </NavLink>
@@ -95,7 +95,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/my-foods"
-              className={isHome || isDark ? "text-white" : "text-black"}
+              className={!isDark ? "text-white" : "text-black"}
             >
               My Food
             </NavLink>
@@ -103,7 +103,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/add-food"
-              className={isHome || isDark ? "text-white" : "text-black"}
+              className={ !isDark ? "text-white" : "text-black"}
             >
               Add Food
             </NavLink>
@@ -111,7 +111,7 @@ const Navbar = () => {
           <li>
             <NavLink
               to="/my-orders"
-              className={isHome || isDark ? "text-white" : "text-black"}
+              className={ !isDark ? "text-white" : "text-black"}
             >
               My Order
             </NavLink>
@@ -122,13 +122,14 @@ const Navbar = () => {
   );
 
   // add transition classes for a smooth fade
-  const navbarClasses = `navbar transition-colors duration-300 ${
-    isHome
-      ? scrolled
-        ? "bg-[rgb(255,141,107)] shadow-sm fixed top-0 left-0 w-full z-50"
-        : "bg-transparent absolute top-0 left-0 w-full z-50"
-      : "bg-base-100 shadow-sm fixed top-0 left-0 w-full z-50"
-  }`;
+const navbarClasses = `navbar  transition-colors duration-300 ${
+  isHome
+    ? scrolled
+      ? "bg-[rgb(255,141,107)] shadow-sm fixed top-0 left-0 w-full z-50"
+      : "bg-[rgb(255,141,107)] absolute top-0 left-0 w-full z-50"
+    : "bg-[rgb(255,141,107)] shadow-sm fixed top-0 left-0 w-full z-50"
+}`;
+
 
   return (
     <>
@@ -159,7 +160,7 @@ const Navbar = () => {
               <ul
                 tabIndex={0}
                 className={`menu menu-sm dropdown-content ${
-                  isHome ? "bg-black" : "bg-base-100"
+                  isHome ? "bg-black" : "bg-[rgb(255,141,107)]"
                 } rounded-box z-10 mt-3 w-52 p-2 shadow`}
               >
                 {link}
@@ -168,7 +169,7 @@ const Navbar = () => {
             <Link to="/">
               <img
                 className={`h-20 invert brightness-0`}
-                alt="Savorly"
+                alt="Savourly"
                 src="https://i.ibb.co.com/99P351F8/Savorly-Logo-Nav-2ef8e390c54a5606a9cd012341f38541.png"
               />
             </Link>
@@ -230,7 +231,7 @@ const Navbar = () => {
                   </ul>
                 </div>
               ) : (
-                <Link to="/log-in" className="btn btn-primary">
+                <Link to="/log-in" className="btn text-white bg-[rgb(255,141,107)]">
                   <FaSignInAlt className="text-white" size={16} /> Log in
                 </Link>
               )

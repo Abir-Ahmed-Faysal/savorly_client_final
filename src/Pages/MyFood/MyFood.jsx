@@ -9,7 +9,7 @@ const MyFood = () => {
   
   const { getDataPromise } = useApplicationApi()
   return (
-    <div>
+    <div className="md:mt-36 space-y-8 md:space-y-16 lg:max-w-6xl md:max-w-6xl ">
       <Suspense fallback={<Spinner></Spinner>}>
         <MyFoodCards foodList={getDataPromise(user.email)}></MyFoodCards>
       </Suspense>

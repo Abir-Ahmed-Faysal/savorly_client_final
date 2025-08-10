@@ -36,7 +36,7 @@ const AddFood = () => {
   };
 
   return (
-    <div className="max-w-2xl mx-auto p-6 bg-base-100 text-base-content shadow rounded-md my-5 transition-colors duration-300">
+    <div className="max-w-2xl md:mt-36 space-y-8 md:space-y-16 mx-auto p-6 bg-base-100 text-base-content shadow rounded-md my-5 transition-colors duration-300">
       <h1 className="text-3xl font-semibold mb-6 text-center">Add Recipe</h1>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

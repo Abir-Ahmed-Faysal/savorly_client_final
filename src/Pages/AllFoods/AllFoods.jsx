@@ -36,13 +36,13 @@ const AllFoods = () => {
   });
 
   return (
-    <div>
-    <div className={`${!isDark ? "bg-gradient-to-r from-pink-200 to-yellow-100" : ""} py-10 text-center`}>
+    <div className="md:mt-36 space-y-8 md:space-y-16">
+    <div className={`${!isDark ? "bg-gradient-to-r from-pink-200 to-yellow-100" : ""} py-10  text-center`}>
 
         <h1 className="text-4xl font-bold">All Foods</h1>
       </div>
 
-      <div className="flex flex-col md:flex-row justify-center items-center gap-4 my-6 px-4">
+      <div className="flex  flex-col md:flex-row justify-center items-center gap-4 my-6 px-4">
         <input
           type="text"
           placeholder="Search food..."
@@ -65,7 +65,7 @@ const AllFoods = () => {
       {loading ? (
         <Spinner></Spinner>
       ) : (
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 pb-10">
+        <div className="grid lg:max-w-7xl md:max-w-6xl mx-auto grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 px-4 pb-10">
           {sortedFoods.length !== 0 ? (
             sortedFoods.map((food) => (
               <div key={food._id} className="card bg-base-100 shadow-xl">

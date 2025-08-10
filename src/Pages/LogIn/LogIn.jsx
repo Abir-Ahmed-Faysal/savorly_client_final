@@ -30,7 +30,7 @@ const LogIn = () => {
   };
 
   return (
-    <div className="w-full my-8 max-w-md p-8 space-y-3 rounded-xl bg-gray-50 mx-auto  text-gray-800">
+    <div className="w-full mt-20 md:mt-32  max-w-md p-8 space-y-3 rounded-xl bg-gray-50 mx-auto  text-gray-800">
       <h1 className="text-2xl font-bold text-center">Welcome Back</h1>
       <h1 className="flex justify-center">
         {" "}

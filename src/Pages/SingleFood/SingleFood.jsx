@@ -23,9 +23,9 @@ const FoodCard = () => {
   }, []);
 
   return (
-    <div className="container mx-auto px-4 py-4 md:py-8">
+    <div className="container mx-auto px-4 py-4  md:mt-36 space-y-8 md:space-y-16">
       {/* Main Food Card */}
-      <div className="card bg-base-100 shadow-2xl md:flex md:flex-row overflow-hidden rounded-xl">
+      <div className="card  bg-base-100 shadow-2xl md:flex md:flex-row overflow-hidden rounded-xl">
         {/* Image Section */}
         <figure className="md:w-1/2">
           <img
@@ -35,43 +35,42 @@ const FoodCard = () => {
           />
         </figure>
 
+        
         {/* Text Content */}
-        <div className="card-body md:w-1/2">
-          <h2 className="card-title text-2xl font-bold ">{foodDetails.name}</h2>
-          <p className="text-gray-700">{foodDetails.description}</p>
+<div className="card-body text-center md:w-1/2 ">
+  <h2 className="text-center text-2xl font-bold">{foodDetails.name}</h2>
+  <p className="text-gray-700">{foodDetails.description}</p>
 
-          <div className="text-sm text-gray-600 space-y-1 mt-3">
-            <p>
-              <span className="font-semibold">Category:</span>{" "}
-              {foodDetails.category}
-            </p>
-            <p>
-              <span className="font-semibold">Origin:</span>{" "}
-              {foodDetails.origin}
-            </p>
-            <p>
-              <span className="font-semibold">Quantity:</span>{" "}
-              {foodDetails.quantity}
-            </p>
-            <p>
-              <span className="font-semibold">Price:</span> ৳{foodDetails.price}
-            </p>
-            <p>
-              <span className="font-semibold">Purchase Count:</span>{" "}
-              {foodDetails.purchaseCount ?? 0}
-            </p>
-          </div>
+  <div className="text-sm text-gray-600 space-y-1 mt-3">
+    <p>
+      <span className="font-semibold">Category:</span> {foodDetails.category}
+    </p>
+    <p>
+      <span className="font-semibold">Origin:</span> {foodDetails.origin}
+    </p>
+    <p>
+      <span className="font-semibold">Quantity:</span> {foodDetails.quantity}
+    </p>
+    <p>
+      <span className="font-semibold">Price:</span> ৳{foodDetails.price}
+    </p>
+    <p>
+      <span className="font-semibold">Purchase Count:</span>{" "}
+      {foodDetails.purchaseCount ?? 0}
+    </p>
+  </div>
 
-          <div className="flex items-center justify-between mt-4 gap-2">
-            <p className="text-lg font-bold  w-[30%]">৳{foodDetails.price}</p>
-            <button
-              className="btn  rounded-xl bg-[rgb(218,102,87)] w-[70%]"
-              onClick={() => navigate(`/Purchase/${foodDetails._id}`)}
-            >
-              Purchase
-            </button>
-          </div>
-        </div>
+  <div className="flex items-center justify-between mt-4 gap-2">
+    <p className="text-lg font-bold w-[30%]">৳{foodDetails.price}</p>
+    <button
+      className="btn rounded-xl bg-[rgb(218,102,87)] w-[70%]"
+      onClick={() => navigate(`/Purchase/${foodDetails._id}`)}
+    >
+      Purchase
+    </button>
+  </div>
+</div>
+
       </div>
 
       {/* Suggested Foods */}

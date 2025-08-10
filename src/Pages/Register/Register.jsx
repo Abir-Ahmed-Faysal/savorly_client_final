@@ -59,7 +59,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-r from-pink-500 via-orange-400 to-yellow-300 py-10">
+    <div className="min-h-screen flex mt-10 items-center justify-center bg-gradient-to-r from-pink-500 via-orange-400 to-yellow-300 py-10">
       <div className="w-full max-w-4xl bg-white rounded-xl shadow-lg overflow-hidden flex flex-col md:flex-row">
         <div className="w-full md:w-1/2 relative min-h-[400px]">
           <img

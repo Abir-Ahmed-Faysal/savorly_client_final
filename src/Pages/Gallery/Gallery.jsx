@@ -22,7 +22,7 @@ const Gallery = () => {
   const slides = imageLinks.map((link) => ({ src: link }));
 
   return (
-    <div className="min-h-screen bg-cover bg-center flex flex-col items-center justify-center px-4 py-10" style={{ backgroundImage: 'url(https://i.ibb.co/C3tpCmcN/pexels-pixabay-262978.jpg)' }}>
+    <div className="min-h-screen md:mt-36 space-y-8 md:space-y-16 bg-cover bg-center flex flex-col items-center justify-center px-4 py-10" style={{ backgroundImage: 'url(https://i.ibb.co/C3tpCmcN/pexels-pixabay-262978.jpg)' }}>
       <h1 className="text-4xl md:text-5xl font-bold text-white bg-black bg-opacity-60 p-6 rounded-xl mb-10 text-center shadow-lg">
         Delicious Gallery
       </h1>
